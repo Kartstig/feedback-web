@@ -43,3 +43,8 @@ body {
   font-family: 'Josefin Slab', serif;
   color: #76ff03;
 }
+
+#main-title {
+  font-size: 64px;
+  font-weight: bold;
+}
