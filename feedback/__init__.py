@@ -12,4 +12,7 @@ app.config.from_object(app_config)
 db = SQLAlchemy(app=app)
 
 def create_app():
+    from feedback.controllers.index import index
+    app.register_blueprint(index)
+
     return app
