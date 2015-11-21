@@ -18,6 +18,7 @@ class ProductionConfig(Config):
         format(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME)
     SQLALCHEMY_POOL_RECYCLE = 1440
     ENV = 'Prod'
+    GOOGLE_API_KEY = '{api_key}'
 
 class DevelopmentConfig(Config):
     DB_USER = '{db_user}'
@@ -28,6 +29,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}:{}/{}'.\
         format(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME)
     ENV = 'Dev'
+    GOOGLE_API_KEY = '{api_key}'
     DEBUG = True
 
 class TestingConfig(Config):
