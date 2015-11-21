@@ -19,7 +19,7 @@ class Restaurant(Base):
     updated_at          = Column(DateTime, nullable=False)
 
     admins = relationship("User",
-        secondary="restaurant_managers",
+        secondary="restaurant_admins",
         backref="restaurants")
 
     location = relationship("Location",
