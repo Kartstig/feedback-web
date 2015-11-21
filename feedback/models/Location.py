@@ -31,8 +31,8 @@ class Location(Base):
         self.updated_at         = timestamp
 
         # Get Lat Long from Google
-        (self.lat, self.lng)    = \
-            geocoder(" ".join(self.street_address, self.city, self.state, self.zip_code))
+        (self.lat, self.lng) = \
+            geocoder(self.street_address, self.city, self.state, self.zip_code)
 
     @staticmethod
     def geocoder(addr, city, state, zip):
