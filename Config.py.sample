@@ -1,0 +1,34 @@
+#!/usr/bin/ python
+# -*- coding: utf-8 -*-
+
+import os
+
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    SECRET_KEY = 'not_secret'
+
+class ProductionConfig(Config):
+    DB_USER = '{db_user}'
+    DB_PASS = '{db_pass}'
+    DB_HOST = '{db_host}'
+    DB_PORT = 3306
+    DB_NAME = '{db_name}'
+    SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}:{}/{}'.\
+        format(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME)
+    SQLALCHEMY_POOL_RECYCLE = 1440
+    ENV = 'Prod'
+
+class DevelopmentConfig(Config):
+    DB_USER = '{db_user}'
+    DB_PASS = '{db_pass}'
+    DB_HOST = '{db_host}'
+    DB_PORT = 3306
+    DB_NAME = '{db_name}'
+    SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}:{}/{}'.\
+        format(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME)
+    ENV = 'Dev'
+    DEBUG = True
+
+class TestingConfig(Config):
+    TESTING = True
