@@ -13,6 +13,8 @@ db = SQLAlchemy(app=app)
 
 def create_app():
     from feedback.controllers.index import index
+    from feedback.controllers.user import user
     app.register_blueprint(index)
+    app.register_blueprint(user)
 
     return app
