@@ -14,7 +14,9 @@ db = SQLAlchemy(app=app)
 def create_app():
     from feedback.controllers.index import index
     from feedback.controllers.user import user
+    from feedback.controllers.pickup import pickup
     app.register_blueprint(index)
     app.register_blueprint(user)
+    app.register_blueprint(pickup)
 
     return app

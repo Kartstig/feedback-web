@@ -17,6 +17,20 @@ def user_get(id):
 def user_all():
     return jsonify(dict(users=UserService().serialize()))
 
+@user.route('/api/user/create', methods=['POST'])
+def user_create():
+    errors = {}
+    us = UserService()
+    if request.method == 'POST':
+        try:
+            u = us.create(**request.form)
+            return jsonify(u)
+        except:
+            return abort(500)
+    else:
+        return abort(401)
+
+
 @user.route('/login', methods=['POST'])
 def user_login():
     errors = {}
