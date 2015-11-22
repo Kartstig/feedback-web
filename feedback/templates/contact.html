@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" id="thank-you-message">
+<h1>
+	Thank You For Joining Us
+</h1>
+<div class="col-xs-12">
+<hr class="short-divider-left"><br>
+</div>
+<p id="thanks-message"
+class="justify-text">
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est urna, feugiat vitae lacus ac, pulvinar dapibus risus. Aliquam scelerisque justo vel accumsan porttitor. Nunc sit amet nulla a felis scelerisque luctus at in felis. Mauris varius dapibus orci, tempus suscipit justo volutpat eu. Vivamus vel faucibus nibh. Vivamus sit amet finibus enim, at tempus sapien. Donec imperdiet arcu at scelerisque congue. Vestibulum luctus libero in velit fringilla consequat. 
+</p>
+</div>
+<div class="container">
+
+<form>
+	<fieldset>
+		<legend>User</legend>
+  <div class="col-xs-12 col-sm-3">
+  	<label for="first-name">First name:</label><br>
+    <input id="first-name" type="text" name="first-name">
+  </div>
+
+<div class="col-xs-12 col-sm-3">
+  <label for="last-name">Last name:</label><br>
+  <input id="last-name" type="text" name="last-name">
+</div>
+  
+
+<div class="col-xs-12 col-sm-3">
+  <label for="password">Password:</label><br>
+  <input id="password" type="password" name="pasword">
+</div>
+  </fieldset>
+</form>
+<form>
+	<fieldset>
+		<legend>Company</legend>
+  <div class="col-xs-12 col-sm-3">
+  	<label for="company-name">Company name:</label><br>
+    <input id="company-name" type="email" name="company-name">
+  </div>
+
+  <div class="col-xs-12 col-sm-3">
+  	<label for="address">Address:</label><br>
+    <input id="address" type="text" name="address">
+  </div>
+  </fieldset>
+</form>
+{% endblock %}
