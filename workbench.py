@@ -134,7 +134,7 @@ def bootstrap_data():
             "last_name":    "Singh",
             "password":     "password",
             "phone_number": "4435107985",
-            "role":         "user,admin,volunteer",
+            "role":         "user,admin,volunteer,recipient",
             "location_id":  LocationService().get(1).id
         },
         {
@@ -143,7 +143,7 @@ def bootstrap_data():
             "last_name":    "Ziegler",
             "password":     "password",
             "phone_number": "4192831501",
-            "role":         "user,admin,volunteer",
+            "role":         "user,admin,volunteer,recipient",
             "location_id":  LocationService().get(2).id
         },
         {
