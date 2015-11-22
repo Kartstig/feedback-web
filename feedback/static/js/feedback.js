@@ -42,10 +42,10 @@ $('#submit-form').on('click', function() {
 	var createAddress = $.ajax({
 		url: '/api/location/create',
 		type: 'POST',
-		data: { address: { street: street, 
+		data: { address: { street_address: street, 
 						   city: city,
 						   state: state,
-						   zipcode: zipcode,
+						   zip_code: zipcode,
 						   phone_number: phoneNumber,
 						   company_name: compnayName
 						}
@@ -63,7 +63,7 @@ $('#submit-form').on('click', function() {
 		var createUser = $.ajax({
 			url: '/api/user/create',
 			type: 'POST',
-			data: { user: { street: street, 
+			data: { user: { location_id: address.id, 
 							   user_name: userName,
 							   password: password,
 							   first_name: firstName,
