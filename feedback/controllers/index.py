@@ -16,6 +16,8 @@ volunteers = get_volunteers()
 donors = get_donors()
 recipients = get_recipients()
 
+volunteer_map = dict((v.mobile, v) for v in volunteers)
+
 invitations = {}
 declined = {}
 deliveries = {}
@@ -44,6 +46,16 @@ def find_match(donor, recipients):
 		need_profile = normalize_foodlist(r.need_profile)
 		if donor_offerings & need_profile:
 			return r
+
+def cleanup(phone_number):
+	cleanup_list = [invitations, declined, deliveries]
+	# clean up state
+	for l in cleanup_list:
+		try:
+			del l[phone_number]
+		except:
+			print "cleanup is missing keys!"
+
 
 index = Blueprint('index', __name__)
 
@@ -92,13 +104,18 @@ def debug(resp):
 def respond():
 	try:
 		resp = twiml.Response()
+		sms = SMS()
+
 		from_number = request.form.get('From', '')
+		volunteer = volunteer_map.get(from_number, None)
 		body = request.form.get('Body', '')
+
 		if 'in-delivery' in session:
 			# send two messages to both
-			
-			# clean up state
-			pass
+			feedback_url = "http://google.com"
+			sms.send_msg(volunteer.mobile, "Thank you for your service! Please visit {} to rate your experience!".format(feedback_url))
+			# sms.send_msg(recipient.mobile, )
+			cleanup(volunteer.mobile)
 		# volunteer is at picking up stage
 		elif 'claimed' in session:
 			(donor, recipient) = deliveries[body] = invitations[from_number]
