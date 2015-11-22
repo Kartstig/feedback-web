@@ -9,7 +9,6 @@ from feedback.models.Base import Base
 from feedback.models.User import User
 from feedback.models.Location import Location
 from feedback.models.Restaurant import Restaurant
-from feedback.models.RestaurantAdmin import RestaurantAdmin
 from feedback.models.Pickup import Pickup
 from feedback.models.Food import Food
 from feedback.models.FoodEntry import FoodEntry
