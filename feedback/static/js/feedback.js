@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Showing fields when drop down
 
 $('#user-role').on('click', function() {
