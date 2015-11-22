@@ -42,15 +42,12 @@ $('#submit-form').on('click', function() {
 	var createAddress = $.ajax({
 		url: '/api/location/create',
 		type: 'POST',
-		data: { address: { street: street, 
+		data: { street_address: street, 
 						   city: city,
 						   state: state,
-						   zipcode: zipcode,
-						   phone_number: phoneNumber,
-						   company_name: compnayName
-						}
+						   zip_code: zipcode,
 				},
-		dataType: 'json'
+		dataType: 'html'
 	});
 
 	createAddress.done(function(address) {
@@ -63,20 +60,19 @@ $('#submit-form').on('click', function() {
 		var createUser = $.ajax({
 			url: '/api/user/create',
 			type: 'POST',
-			data: { user: { street: street, 
-							   user_name: userName,
+			data: { location_id: address.id,
+							   username: userName,
 							   password: password,
 							   first_name: firstName,
 							   last_name: lastName,
-							   user_role: userRole
-							}
+							   role: userRole
 					},
-			dataType: 'json'
+			dataType: 'html'
 		});
 	});
 
 	createAddress.fail(function(data) {
-			alert('Error: Missing information');
+			console.log(data);
 	});
 });
 
