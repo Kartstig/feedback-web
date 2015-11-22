@@ -6,6 +6,8 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, F
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
+from feedback.models.Restaurant import Restaurant
+
 class Pickup(Base):
 
     __tablename__ = 'pickups'
@@ -18,7 +20,7 @@ class Pickup(Base):
     created_at          = Column(DateTime, nullable=False)
     updated_at          = Column(DateTime, nullable=False)
 
-    restaurant = relationship("Restaurant",
+    restaurant = relationship(Restaurant,
         foreign_keys="Pickup.restaurant_id",
         backref="pickups")
 
