@@ -115,17 +115,20 @@ def respond():
 		body = request.form.get('Body', '')
 		# find the volunteer entry by phone number
 		volunteer = volunteer_map.get(from_number, None)
+		if not volunteer:
+			raise Exception("Could not find volunteer for number: {}".format(from_number))
 
 		# volunteer is at delivery phase, finishing!
 		if 'in-delivery' in session:
+			(donor, recipient) = deliveries[volunteer.mobile]
 			# send two messages to both
 			feedback_url = "http://google.com"
-			sms.send_msg(volunteer.mobile, "Thank you for your service! Please visit {} to rate your experience!".format(feedback_url))
-			# sms.send_msg(recipient.mobile, )
+			resp.message("Thank you for your service! Please visit {} to rate your experience!".format(feedback_url))
+			# sms.send_msg(recipient.mobile, "") # FIXME: no recipient.mobile field!
 			cleanup(volunteer.mobile)
 		# volunteer is at picking up stage, time to deliver parcel
 		elif 'claimed' in session:
-			(donor, recipient) = deliveries[body] = invitations[from_number]
+			(donor, recipient) = deliveries[from_number] = invitations[from_number]
 			resp.message("Please deliver the parcel to {}, and text 'done' when delivered.".format(recipient.location))
 			session['in-delivery'] = True
 		# volunteer is responding to initial invitation, so decide yes or no
@@ -143,6 +146,8 @@ def respond():
 				session['claimed'] = from_number
 				# ...and msg them to text back when they pickup the parcel
 				resp.message("Wonderful! When you pickup the parcel, text 'pickup' back to us, and we'll let them know you are coming!".format(body))
+		else:
+			resp.message("Visit {} to find out more!".format("http://gofeedback.co"))
 		# debug(resp)
 		return str(resp)
 	except Exception as e:
