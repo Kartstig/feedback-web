@@ -19,6 +19,8 @@ class ProductionConfig(Config):
     SQLALCHEMY_POOL_RECYCLE = 1440
     ENV = 'Prod'
     GOOGLE_API_KEY = '{api_key}'
+    TWILIO_AUTH = '{auth}'
+    TWILIO_SID = '{sid}'
 
 class DevelopmentConfig(Config):
     DB_USER = '{db_user}'
@@ -31,6 +33,8 @@ class DevelopmentConfig(Config):
     ENV = 'Dev'
     GOOGLE_API_KEY = '{api_key}'
     DEBUG = True
+    TWILIO_AUTH = '{auth}'
+    TWILIO_SID = '{sid}'
 
 class TestingConfig(Config):
     TESTING = True

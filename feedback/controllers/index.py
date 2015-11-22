@@ -36,6 +36,13 @@ def handle_donation(donor):
 		"A food pickup is ready for you at {} ({})".format(
 			donor.name, donor.location))
 
+@index.route('/about', methods=['GET'])
+def about():
+    return render_template("about.html", current_user=current_user)
+
+@index.route('/contact', methods=['GET'])
+def contact():
+    return render_template("contact.html", current_user=current_user)
 
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
@@ -46,3 +53,10 @@ def respond():
 		return str(resp)
 	except Exception as e:
 		print e
+
+@index.route('/map', methods=['GET'])
+def map():
+    return render_template('map.html',
+        current_user=current_user,
+        api_key=app_config.GOOGLE_API_KEY,
+        active = request.form.get('active', ''))
