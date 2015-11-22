@@ -22,6 +22,7 @@ def user_create():
     errors = {}
     us = UserService()
     if request.method == 'POST':
+        print request.form
         try:
             u = us.create(**request.form)
             if u:
