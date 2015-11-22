@@ -4,8 +4,15 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
+/* INDEX =============================================*/
+#header {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+}
+
 .background-container {
-  position: absolute;
+  position: fixed;
   top: 5rem;
   left: 0;
   width: 100%;
@@ -15,11 +22,11 @@ body {
   background-image: url(/static/img/background-0.jpg);
   background-size: cover;
 
-  z-index: 10;
+  z-index: 1;
 }
 
 .texture-container {
-  position: absolute;
+  position: fixed;
   top: 5rem;
   left: 0;
   width: 100%;
@@ -28,14 +35,14 @@ body {
 
   background-color: rgba(0,0,0,0.5);
 
-  z-index: 12;
+  z-index: 5;
 }
 
 #basic-info {
-  position: absolute;
-  margin-top: 26vh;
+  position: fixed;
+  margin-top: 36vh;
   width: 100%;
-  z-index: 15;
+  z-index: 5;
 }
 
 #main-title {
@@ -48,3 +55,103 @@ body {
   font-family: 'Josefin Slab', serif;
   color: #76ff03;
 }
+
+#brand-info-section {
+  position: absolute;
+  top: 93%;
+  width: 100%;
+  padding: 0;
+  background-color: white;
+
+  z-index: 10;
+}
+
+#way-we-do-this {
+  margin-top: 4rem;
+}
+
+#second-title {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  font-size: 42px;
+}
+
+#initial-info {
+  text-align: justify;
+  text-justify: inter-word;
+  width: 90%;
+  margin: 4rem auto 4rem auto;
+}
+
+.cust-container {
+  width: 100%;
+  padding: 0 2rem 0 2rem;
+  border: 2px solid #fff;
+}
+
+.cust-container p {
+  color: #444;
+}
+
+#second-section {
+  width: 100%;
+  margin-top: 8rem;
+  background-color: #76ff03;
+  padding: 10rem 0 10rem 0;
+}
+
+.how-title {
+  text-align: center;
+  margin: 3rem 0 4rem 0;
+  color: #444;
+}
+
+.short-divider {
+  margin: 5rem auto 5rem auto;
+  border: 1.8px solid #76ff03;
+  width: 15rem;
+}
+
+#third-section {
+  width: 100%;
+  background-color: #444;
+  padding: 2rem;
+}
+
+#right-col {
+  border-left: 2px solid #eee;
+}
+
+.socio-icons {
+  color: #bbb;
+  margin: 3rem;
+
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.inline {
+  display: inline-block;
+}
+
+#contact-info {
+  color: #bbb;
+  font-family: 'Josefin Slab', serif;
+}
+
+#media-contacts {
+  text-align: center;
+}
+
+.socio-icons:hover {
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.justify-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ADD DONATOR =======================================*/
