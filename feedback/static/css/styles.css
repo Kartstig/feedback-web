@@ -279,24 +279,3 @@ margin: 10rem 0rem 10rem;
   display:block;
 }
 
-//reset, center n shiz (don't mind this stuff)
-*, ::after, ::before{
-  height: 100%;
-  padding:0;
-  margin:0;
-  box-sizing: border-box;
-  text-align: center;
-  vertical-align: middle;
-}
-body{
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-  Helvetica, Arial, "Lucida Grande", sans-serif;
-  &::before{
-    height: 100%;
-    content:'';
-    width:0;
-    background:red;
-    vertical-align: middle;
-    display:inline-block;
-  }
-}

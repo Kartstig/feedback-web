@@ -51,6 +51,10 @@ def about():
 def contact():
     return render_template("contact.html", current_user=current_user)
 
+@index.route('/evaluation')
+def rate():
+    return render_template("Evaluation_donor.html", current_user=current_user)
+
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
 	try:
