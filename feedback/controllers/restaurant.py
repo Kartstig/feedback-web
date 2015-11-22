@@ -4,7 +4,6 @@
 from flask import request, redirect, url_for, current_app, \
     render_template, flash, Blueprint, Response, jsonify
 from flask.ext.login import login_user, current_user, logout_user
-from feedback.models.Pickup import Pickup
 from feedback.services.RestaurantService import RestaurantService
 
 restaurant = Blueprint('restaurant', __name__)
@@ -15,7 +14,7 @@ def restaurant_get(id):
 
 @restaurant.route('/api/restaurant/all', methods=['GET'])
 def restaurant_all():
-    return jsonify(dict(users=RestaurantService().serialize()))
+    return jsonify(dict(restaurants=RestaurantService().serialize()))
 
 @restaurant.route('/api/restaurant/create', methods=['POST'])
 def restaurant_create():

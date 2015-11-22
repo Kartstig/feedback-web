@@ -92,7 +92,6 @@ def debug(resp):
 def respond():
 	try:
 		resp = twiml.Response()
-
 		from_number = request.form.get('From', '')
 		body = request.form.get('Body', '')
 		if 'in-delivery' in session:
@@ -115,7 +114,6 @@ def respond():
 			else:
 				session['claimed'] = from_number
 				resp.message("Wonderful! When you pickup the parcel, text 'pickup' back to us, and we'll let them know you are coming!".format(body))
-	
 		# debug(resp)
 		return str(resp)
 	except Exception as e:

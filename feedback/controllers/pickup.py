@@ -4,7 +4,6 @@
 from flask import request, redirect, url_for, current_app, \
     render_template, flash, Blueprint, Response, jsonify
 from flask.ext.login import login_user, current_user, logout_user
-from feedback.models.Pickup import Pickup
 from feedback.services.PickupService import PickupService
 
 pickup = Blueprint('pickup', __name__)
@@ -15,7 +14,7 @@ def pickup_get(id):
 
 @pickup.route('/api/pickup/all', methods=['GET'])
 def pickup_all():
-    return jsonify(dict(users=PickupService().serialize()))
+    return jsonify(dict(pickups=PickupService().serialize()))
 
 @pickup.route('/api/pickup/create', methods=['POST'])
 def pickup_create():
