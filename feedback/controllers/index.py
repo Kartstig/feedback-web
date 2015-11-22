@@ -28,5 +28,5 @@ def respond():
 		sms = SMS()
 		(from_number, msg) = sms.receive_msg(request)
 		sms.send_msg(from_number, "I hear you, {}, you said {}".format(from_number, msg))
-	except Exception e:
+	except Exception as e:
 		print e
