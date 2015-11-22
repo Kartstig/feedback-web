@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" id="thank-you-message">
+<h1>
+	Thank You For Joining Us
+</h1>
+<div class="col-xs-12">
+<hr class="short-divider-left"><br>
+</div>
+<p id="thanks-message"
+class="justify-text">
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est urna, feugiat vitae lacus ac, pulvinar dapibus risus. Aliquam scelerisque justo vel accumsan porttitor. Nunc sit amet nulla a felis scelerisque luctus at in felis. Mauris varius dapibus orci, tempus suscipit justo volutpat eu. Vivamus vel faucibus nibh. Vivamus sit amet finibus enim, at tempus sapien. Donec imperdiet arcu at scelerisque congue. Vestibulum luctus libero in velit fringilla consequat. 
+</p>
+</div>
+<div class="container">
+
+<form action="/api/user/create" method="post">
+	<fieldset>
+		<legend>User</legend>
+  <div class="col-xs-12 col-sm-3">
+    <label for="user-name">Username:</label><br>
+    <input id="user-name" type="text" name="user-name">
+  </div>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="password">Password:</label><br>
+    <input id="password" type="password" name="password">
+  </div>
+  <div class="col-xs-12 separator"></div>
+  <div class="col-xs-12 col-sm-3">
+  	<label for="first-name">First name:</label><br>
+    <input id="first-name" type="text" name="first-name">
+  </div>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="last-name">Last name:</label><br>
+    <input id="last-name" type="text" name="last-name">
+  </div>
+  
+  
+    <div class="col-xs-12 col-sm-3">
+      <label for="user-role">How You Want to Help:</label><br>
+      <select id="user-role" name="role">
+        <option value="">Select Option</option>
+        <option value="volunteer">Volunteer</option>
+        <option value="donator">Donator</option>
+        <option value="collector">Collector</option>
+      </select>
+    </div>
+
+  </fieldset>
+</form>
+
+<form id="volunteer-form">
+	<fieldset id="volunteer">
+		<legend>Volunteer</legend>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="street-address">Street Address:</label><br>
+    <input id="street-address" type="text" name="street-address">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="city">City:</label><br>
+    <input id="city" type="text" name="city">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="state">State:</label><br>
+    <input id="state" type="text" name="state">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="zipcode">Zipcode:</label><br>
+    <input id="zipcode" type="text" name="zipcode">
+  </div>
+  <div class="col-xs-12 separator"></div>
+  <div class="col-xs-12 col-sm-3">
+    <label for="phone-number">Phone Number:</label><br>
+    <input id="phone-number" type="text" name="phone-number">
+  </div>
+  </fieldset>
+</form>
+
+<form id="donator-form">
+  <fieldset id="donator">
+    <legend>Donator</legend>
+  <div class="col-xs-12 col-sm-3">
+    <label for="company-name">Company name:</label><br>
+    <input id="company-name" type="email" name="company-name">
+  </div>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="street-address">Street Address:</label><br>
+    <input id="street-address" type="text" name="street-address">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="city">City:</label><br>
+    <input id="city" type="text" name="city">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="state">State:</label><br>
+    <input id="state" type="text" name="state">
+  </div>
+
+  <div class="col-xs-12 separator"></div>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="zipcode">Zipcode:</label><br>
+    <input id="zipcode" type="text" name="zipcode">
+  </div>
+  </fieldset>
+</form>
+
+<form id="collector-form">
+  <fieldset id="collector">
+    <legend>Collector</legend>
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="street-address">Street Address:</label><br>
+    <input id="street-address" type="text" name="street-address">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="city">City:</label><br>
+    <input id="city" type="text" name="city">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="state">State:</label><br>
+    <input id="state" type="text" name="state">
+  </div>
+  
+
+  <div class="col-xs-12 col-sm-3">
+    <label for="zipcode">Zipcode:</label><br>
+    <input id="zipcode" type="text" name="zipcode">
+  </div>
+  </fieldset>
+</form>
+  <div>
+    <button id="submit-form" type="button">Join Us!</button>
+  </div>
+<div class="col-xs-12 separator"></div>
+{% endblock %}
+ 

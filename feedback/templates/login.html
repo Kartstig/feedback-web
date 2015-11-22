@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" id="thank-you-message">
+<h1>
+	Thank You For Joining Us
+</h1>
+</div>
+<div class="container">
+
+<form>
+	<fieldset>
+		<legend>User</legend>
+  <div class="col-xs-12 col-sm-3">
+  	<label for="first-name">First name:</label><br>
+    <input id="first-name" type="text" name="first-name">
+  </div>
+
+<div class="col-xs-12 col-sm-3">
+  <label for="last-name">Last name:</label><br>
+  <input id="last-name" type="text" name="last-name">
+</div>
+  
+
+<div class="col-xs-12 col-sm-3">
+  <label for="password">Password:</label><br>
+  <input id="password" type="password" name="pasword">
+</div>
+  </fieldset>
+</form>
+{% endblock %}
