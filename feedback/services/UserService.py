@@ -15,6 +15,6 @@ class UserService(Base):
 
     def by_role(self, role):
         try:
-            return self.session.query(User).filter(User.name.like('%{}%'.format(role))).all()
+            return self.session.query(User).filter(User.role.like('%{}%'.format(role))).all()
         except:
             return None
