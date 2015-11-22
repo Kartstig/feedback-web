@@ -26,7 +26,7 @@ class SMS(object):
 		# resp.findall('./Message/Body').pop().text
 		# values.get('From') # incoming phone number
 		# print request.values # FIXME/DEBUG
-		return (request.values.get('From', ''), request.values.get('Body', ''))
+		return (request.form.get('From', ''), request.form.get('Body', ''))
 
 
 if __name__ == '__main__':
