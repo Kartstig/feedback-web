@@ -11,15 +11,20 @@ FeedbackApp.Recipients.url = '/api/location/recipients';
 FeedbackApp.Recipients.parse = function(data) {return data.locations};
 
 (FeedbackApp.updateMap = function() {
-    console.log(FeedbackApp.Restaurants)
-    console.log(FeedbackApp.Recipients)
+  _.each(FeedbackApp.Restaurants.models, function(el) {
+    FeedbackApp.addMarker(el.attributes);
+  });
+  _.each(FeedbackApp.Recipients.models, function(el) {
+    FeedbackApp.addMarker(el.attributes);
+  });
 });
 
 (FeedbackApp.addMarker = function(location) {
-  FeedbackApp.currentMarker = new google.maps.Marker({
+  location.marker = new google.maps.Marker({
     position: new google.maps.LatLng(location.lat, location.lng),
-    title: location.name
+    title: location.street_address
   });
+  location.marker.setMap(map);
 });
 
 
