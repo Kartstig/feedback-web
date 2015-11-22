@@ -50,7 +50,7 @@ class User(Base, UserMixin):
         self.validation_token   = os.urandom(32).encode('hex')
         self.last_login         = last_login
         self.location_id        = location_id
-        self.interests          = intersts
+        self.interests          = interests
 
     @staticmethod
     def pass_hash(password):

@@ -17,6 +17,7 @@ from feedback.services.LocationService import LocationService
 from feedback.services.RestaurantService import RestaurantService
 from feedback.services.PickupService import PickupService
 from feedback.services.FoodService import FoodService
+from feedback.services.UserService import UserService
 
 def new_schema():
     Base.metadata.drop_all(db.engine)
