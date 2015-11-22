@@ -12,17 +12,27 @@ FeedbackApp.Recipients.parse = function(data) {return data.locations};
 
 (FeedbackApp.updateMap = function() {
   _.each(FeedbackApp.Restaurants.models, function(el) {
-    FeedbackApp.addMarker(el.attributes);
+    FeedbackApp.addMarker(el.attributes, "/static/img/store.png");
   });
   _.each(FeedbackApp.Recipients.models, function(el) {
-    FeedbackApp.addMarker(el.attributes);
+    FeedbackApp.addMarker(el.attributes, "/static/img/person.png");
   });
 });
 
-(FeedbackApp.addMarker = function(location) {
+(FeedbackApp.toggle = function(locations) {
+  _.each(FeedbackApp.Restaurants.models, function(el) {
+    FeedbackApp.addMarker(el.attributes, "/static/img/store.png");
+  });
+  _.each(FeedbackApp.Recipients.models, function(el) {
+    FeedbackApp.addMarker(el.attributes, "/static/img/person.png");
+  });
+});
+
+(FeedbackApp.addMarker = function(location, icon) {
   location.marker = new google.maps.Marker({
     position: new google.maps.LatLng(location.lat, location.lng),
-    title: location.street_address
+    title: location.street_address,
+    icon: icon
   });
   location.marker.setMap(map);
 });
