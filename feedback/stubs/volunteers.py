@@ -31,6 +31,15 @@ recipients = (
 	('The Cosby\'s', '', 'Milk, Eggs, quaaludes')
 )
 
+def get_volunteers():
+	return [Volunteer(v) for v in volunteers]
+
+def get_donor():
+	return [Donor(d) for d in donors]
+
+def get_recipients():
+	return [Recipients(r) for r in recipients]
+
 
 if __name__ == '__main__':
 	pass
