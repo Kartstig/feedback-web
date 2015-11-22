@@ -17,7 +17,8 @@ class SMS(object):
 		return TwilioRestClient(app_config.TWILIO_AUTH, app_config.TWILIO_AUTH)
 
 	def send_msg(self, dest, msg):
-		self.client.messages.create(to=dest, from_=self.account_phone, body=msg)
+		self.client.messages.create(
+			to="+1{}".format(dest), from_=self.account_phone, body=msg)
 
 	def receive_msg(self, request):
 		# TODO: find the sender and the msg

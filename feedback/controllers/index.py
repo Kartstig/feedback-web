@@ -10,9 +10,11 @@ from feedback.config import app_config
 from twilio import twiml
 
 from random import choice
-from feedback.stubs import get_volunteers
+from feedback.stubs.volunteers import get_volunteers, get_donors, get_recipients
 
 volunteers = get_volunteers()
+donors = get_donors()
+recipients = get_recipients()
 
 index = Blueprint('index', __name__)
 
@@ -23,6 +25,11 @@ def main():
 @index.route('/donate', methods=['GET', 'POST'])
 def donate():
 	if request.method == 'POST':
+		# d = Donor(request.form['name'], request.form['location'], request.form['offering'])
+		# d = donors[0]
+		# donor_offerings = set(o.lower() for o in d.offering.split(', '))
+		# for 
+		# donor_offerings.intersect(set(o.lower() for o in r.need_profile.split(', ')))
 		pass
 	else:
 		return render_template("donate.html", current_user=current_user)
@@ -32,7 +39,7 @@ def handle_donation(donor):
 	volunteer = choice(volunteers)
 	sms = SMS()
 	# TODO: make second param a google link?
-	sms.send_msg(volunteer.mobile, 
+	sms.send_msg(volunteer.mobile,
 		"A food pickup is ready for you at {} ({})".format(
 			donor.name, donor.location))
 
