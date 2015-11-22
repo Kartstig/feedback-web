@@ -20,8 +20,8 @@ donors = (
 volunteers = (
 	('Herman', '4435107985', ''),
 	('Scott', '4192831501', ''),
-	('Sam', '', ''),
-	('James', '', '')
+	# ('Sam', '', ''),
+	('Ashley', '4407993388', '')
 )
 
 recipients = (
@@ -32,13 +32,13 @@ recipients = (
 )
 
 def get_volunteers():
-	return [Volunteer(v) for v in volunteers]
+	return [Volunteer(*v) for v in volunteers]
 
-def get_donor():
-	return [Donor(d) for d in donors]
+def get_donors():
+	return [Donor(*d) for d in donors]
 
 def get_recipients():
-	return [Recipients(r) for r in recipients]
+	return [Recipient(*r) for r in recipients]
 
 
 if __name__ == '__main__':
