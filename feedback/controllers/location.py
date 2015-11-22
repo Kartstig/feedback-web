@@ -17,13 +17,13 @@ def location_get(id):
 @location.route('/api/location/restaurants', methods=['GET'])
 def location_restaurant():
     restaurants = RestaurantService().all()
-    return jsonify(dict(locations=[r.location for r in restaurants]))
+    return jsonify(locations=[r.location.tojson() for r in restaurants])
 
 @location.route('/api/location/recipients', methods=['GET'])
 def location_recipient():
     users = UserService().by_role("recipient")
     if users:
-        return jsonify(dict(locations=[u.location for u in users]))
+        return jsonify(dict(locations=[u.location.tojson() for u in users]))
     else:
         return jsonify(dict(locations=[]))
 
