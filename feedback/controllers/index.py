@@ -100,9 +100,9 @@ def about():
 def contact():
     return render_template("contact.html", current_user=current_user)
 
-def debug(resp):
-	resp.message("I hear you, {}, you said {}".format(
-		request.form.get('From', ''), request.form.get('Body', '')))
+# def debug(resp):
+# 	resp.message("I hear you, {}, you said {}".format(
+# 		request.form.get('From', ''), request.form.get('Body', '')))
 
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
@@ -127,7 +127,7 @@ def respond():
 		elif 'claimed' in session:
 			(donor, recipient) = deliveries[body] = invitations[from_number]
 			resp.message("Please deliver the parcel to {}, and text 'done' when delivered.".format(recipient.location))
-			session['in-delivery'] = true
+			session['in-delivery'] = True
 		# volunteer is responding to initial invitation, so decide yes or no
 		elif from_number in invitations:
 			# if no, need to mark volunteer as declined and retry the invite
