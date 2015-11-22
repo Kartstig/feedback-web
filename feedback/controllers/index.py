@@ -14,9 +14,19 @@ index = Blueprint('index', __name__)
 def main():
     return render_template("index.html", current_user=current_user)
 
+@index.route('/respond_test', methods=['GET', 'POST'])
+def respond_test():
+	try:
+		print request.keys()
+		print request.values
+	except Exception e:
+		print e
+
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
-	sms = SMS()
-	(from_number, msg) = sms.receive_msg(request)
-	sms.send_msg(from_number, "I hear you, {}, you said {}".format(from_number, msg))
-
+	try:
+		sms = SMS()
+		(from_number, msg) = sms.receive_msg(request)
+		sms.send_msg(from_number, "I hear you, {}, you said {}".format(from_number, msg))
+	except Exception e:
+		print e
