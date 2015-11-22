@@ -167,9 +167,10 @@ def bootstrap_data():
     add_objects(pickups, Pickup)
 
     p = PickupService().get(1)
-    p.foods.append(FoodService().get(1))
-    p.foods.append(FoodService().get(2))
-    p.foods.append(FoodService().get(3))
+    f1 = FoodService().get(1)
+    f2 = FoodService().get(2)
+    p.foods.append(f1)
+    p.foods.append(f2)
     db.session.add(p)
     db.session.commit()
 
