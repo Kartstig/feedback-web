@@ -12,6 +12,9 @@ from twilio import twiml
 from random import choice, randint
 from feedback.stubs.volunteers import get_volunteers, get_donors, get_recipients
 
+from feedback.services.UserService import UserService
+from feedback.services.PickupService import PickupService
+
 volunteers = get_volunteers()
 donors = get_donors()
 recipients = get_recipients()
@@ -33,6 +36,8 @@ deliveries = {}
 # 	while new_id in invitations:
 # 		new_id = generate_invitation_id()
 # 	return new_id
+
+
 
 def normalize_foodlist(foodlist):
 	"""returns lower-case list of tokens from comma-sep string"""
