@@ -106,34 +106,42 @@ def debug(resp):
 
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
+	"""receives all incoming SMS messages"""
 	try:
 		resp = twiml.Response()
 		sms = SMS()
-
+		# grab the incoming volunteer phone number and the msg they sent
 		from_number = request.form.get('From', '')
-		volunteer = volunteer_map.get(from_number, None)
 		body = request.form.get('Body', '')
+		# find the volunteer entry by phone number
+		volunteer = volunteer_map.get(from_number, None)
 
+		# volunteer is at delivery phase, finishing!
 		if 'in-delivery' in session:
 			# send two messages to both
 			feedback_url = "http://google.com"
 			sms.send_msg(volunteer.mobile, "Thank you for your service! Please visit {} to rate your experience!".format(feedback_url))
 			# sms.send_msg(recipient.mobile, )
 			cleanup(volunteer.mobile)
-		# volunteer is at picking up stage
+		# volunteer is at picking up stage, time to deliver parcel
 		elif 'claimed' in session:
 			(donor, recipient) = deliveries[body] = invitations[from_number]
 			resp.message("Please deliver the parcel to {}, and text 'done' when delivered.".format(recipient.location))
 			session['in-delivery'] = true
+		# volunteer is responding to initial invitation, so decide yes or no
 		elif from_number in invitations:
+			# if no, need to mark volunteer as declined and retry the invite
 			if 'n' in body.lower():
 				# remove from invitations
 				invite = invitations.pop(from_number)
 				declined[from_number] = True
 				# re-invite next volunteer
 				handle_donation(*invite)
+			# otherwise they said yes
 			else:
+				# claim the pickup for the volunteer
 				session['claimed'] = from_number
+				# ...and msg them to text back when they pickup the parcel
 				resp.message("Wonderful! When you pickup the parcel, text 'pickup' back to us, and we'll let them know you are coming!".format(body))
 		# debug(resp)
 		return str(resp)
