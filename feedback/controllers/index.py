@@ -22,9 +22,9 @@ def respond():
 		# (from_number, msg) = sms.receive_msg(request)
 		# sms.send_msg(from_number, 
 		# 	"I hear you, {}, you said {}".format(from_number, msg))
-		resp = twiml.Response("I hear you, {}, you said {}".format(
+		resp = twiml.Response()
+		resp.message("I hear you, {}, you said {}".format(
 			request.form.get('From', ''), request.form.get('Body', '')))
-		resp.message()
 		return str(resp)
 	except Exception as e:
 		print e
