@@ -29,13 +29,15 @@ class User(Base, UserMixin):
     validation_token    = Column(String(64))
     last_login          = Column(DateTime)
     location_id         = Column(Integer, ForeignKey('locations.id'))
+    interests           = Column(String(50))
 
     location = relationship(Location,
         foreign_keys="User.location_id",
         backref="user")
 
     def __init__(self, username, password=None, first_name=None, last_name=None, 
-                 phone_number=None, role='user', last_login=None, location_id=None):
+                 phone_number=None, role='user', last_login=None, location_id=None,
+                 interests=None):
         timestamp = datetime.now()
         self.username           = username
         self.password           = (self.pass_hash(password)) if password else None
@@ -48,6 +50,7 @@ class User(Base, UserMixin):
         self.validation_token   = os.urandom(32).encode('hex')
         self.last_login         = last_login
         self.location_id        = location_id
+        self.interests          = intersts
 
     @staticmethod
     def pass_hash(password):

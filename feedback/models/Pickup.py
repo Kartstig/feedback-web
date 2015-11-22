@@ -2,11 +2,17 @@
 # -*- coding: utf-8 -*-
 
 from Base import Base
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
 from feedback.models.Restaurant import Restaurant
+from feedback.models.Food import Food
+
+association_table = Table('food_entries', Base.metadata,
+    Column('pickup_id', Integer, ForeignKey('pickups.id')),
+    Column('food_id', Integer, ForeignKey('foods.id'))
+)
 
 class Pickup(Base):
 
@@ -32,6 +38,10 @@ class Pickup(Base):
         foreign_keys="Pickup.recipient_id",
         backref="deliveries")
 
+    foods = relationship(Food,
+        secondary=association_table,
+        backref="pickups")
+
     def __init__(self, restaurant_id, pickup_time, \
             courier_id=None, recipient_id=None):
         timestamp = datetime.now()
@@ -41,6 +51,18 @@ class Pickup(Base):
         self.recipient_id       = recipient_id
         self.created_at         = timestamp
         self.updated_at         = timestamp
+
+    def has_courier(self):
+        if self.recipient_id:
+            return True
+        else:
+            return False
+
+    def matchable(self):
+        if self.courier_id:
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.id)
