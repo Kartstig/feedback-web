@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
+from datetime import datetime
 
 from feedback import db
 from feedback.config import app_config
@@ -11,9 +12,11 @@ from feedback.models.Location import Location
 from feedback.models.Restaurant import Restaurant
 from feedback.models.Pickup import Pickup
 from feedback.models.Food import Food
-from feedback.models.FoodEntry import FoodEntry
 
 from feedback.services.LocationService import LocationService
+from feedback.services.RestaurantService import RestaurantService
+from feedback.services.PickupService import PickupService
+from feedback.services.FoodService import FoodService
 
 def new_schema():
     Base.metadata.drop_all(db.engine)
@@ -149,11 +152,26 @@ def bootstrap_data():
             "last_name":    "Fester",
             "phone_number": "",
             "role":         "user,recipient",
-            "location_id":  LocationService().get(6).id
+            "location_id":  LocationService().get(6).id,
+            "interests":    "donuts,milk,eggs,cod"
         }
     ]
     add_objects(users, User)
 
+    pickups = [
+        {
+            "restaurant_id":    RestaurantService().get(1).id,
+            "pickup_time":      datetime.now()
+        }
+    ]
+    add_objects(pickups, Pickup)
+
+    p = PickupService().get(1)
+    p.foods.append(FoodService().get(1))
+    p.foods.append(FoodService().get(2))
+    p.foods.append(FoodService().get(3))
+    db.session.add(p)
+    db.session.commit()
 
 def geocode(addr, city, state, zip):
     data = [addr, city, state, zip]
