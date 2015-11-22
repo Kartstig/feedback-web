@@ -18,36 +18,55 @@ recipients = get_recipients()
 
 volunteer_map = dict((v.mobile, v) for v in volunteers)
 
+# stores the v.mobile: -> (donor, recipient) for invited volunteers
 invitations = {}
+# stores the v.mobile: -> True for invited volunteers
 declined = {}
+# stores the v.mobile: -> (donor, recipient) for deliveries-in-progress
 deliveries = {}
 
-def generate_invitation_id():
-	return "".join(str(randint(0,9)) for i in xrange(0,4))
+# def generate_invitation_id():
+# 	return "".join(str(randint(0,9)) for i in xrange(0,4))
 
-def get_invitation_id():
-	new_id = generate_invitation_id()
-	while new_id in invitations:
-		new_id = generate_invitation_id()
-	return new_id
-
-def choose_volunteer():
-	volunteer = choice(volunteers)
-	while volunteer.mobile in invitations or volunteer.mobile in declined:
-		volunteer = choice(volunteers)
-	return volunteer
+# def get_invitation_id():
+# 	new_id = generate_invitation_id()
+# 	while new_id in invitations:
+# 		new_id = generate_invitation_id()
+# 	return new_id
 
 def normalize_foodlist(foodlist):
+	"""returns lower-case list of tokens from comma-sep string"""
 	return set(o.lower() for o in r.foodlist.split(', '))
 
 def find_match(donor, recipients):
+	"""finds first recipient matching the donor profile"""
 	donor_offerings = normalize_foodlist(donor.offering)
 	for r in recipients:
 		need_profile = normalize_foodlist(r.need_profile)
 		if donor_offerings & need_profile:
 			return r
 
+def choose_volunteer():
+	"""chooses a volunteer not already active or declined"""
+	volunteer = choice(volunteers)
+	while volunteer.mobile in invitations or volunteer.mobile in declined:
+		volunteer = choice(volunteers)
+	return volunteer
+
+def handle_donation(donor, recipient):
+	"""chooses inactive/undeclined volunteer and sends them invite to mission"""
+	sms = SMS()
+	# find a valid volunteer (i.e., not already busy or declined)
+	volunteer = choose_volunteer()
+	# globally-store the fact we've invited vol to deliver
+	invitations[volunteer.mobile] = (donor, recipient)
+	# issue the message
+	sms.send_msg(volunteer.mobile,
+		"A food pickup is ready for you at {} ({}). Text 'Yes' to accept this mission, or 'No' to decline.".format(
+			donor.name, donor.location))
+
 def cleanup(phone_number):
+	"""Removes entries for volunteer from all global maps"""
 	cleanup_list = [invitations, declined, deliveries]
 	# clean up state
 	for l in cleanup_list:
@@ -72,21 +91,6 @@ def donate():
 		handle_donation(d, target_recipient)
 	else:
 		return render_template("donate.html", current_user=current_user)
-
-def invite_volunteer(donor, recipient):
-	volunteer = choose_volunteer()
-	invitations[volunteer.mobile] = (donor, recipient)
-	return volunteer
-
-def handle_donation(donor, recipient):
-	resp = twiml.Response()
-	volunteer = invite_volunteer(donor, recipient)
-
-	sms = SMS()
-	# TODO: make second param a google link?
-	sms.send_msg(volunteer.mobile,
-		"A food pickup is ready for you at {} ({}). Text 'Yes' to accept this mission, or 'No' to decline.".format(
-			donor.name, donor.location))
 
 @index.route('/about', methods=['GET'])
 def about():
@@ -125,7 +129,7 @@ def respond():
 			if 'n' in body.lower():
 				# remove from invitations
 				invite = invitations.pop(from_number)
-				declined[from_number] = true
+				declined[from_number] = True
 				# re-invite next volunteer
 				handle_donation(*invite)
 			else:
