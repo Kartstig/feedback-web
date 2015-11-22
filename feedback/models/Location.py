@@ -7,6 +7,8 @@ from Base import Base
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float
 from datetime import datetime
 
+from feedback.config import app_config
+
 class Location(Base):
 
     __tablename__ = 'locations'
@@ -15,7 +17,7 @@ class Location(Base):
     street_address      = Column(String(50), nullable=False)
     city                = Column(String(50), nullable=False)
     state               = Column(String(50), nullable=False)
-    zip_code            = Column(Integer, nullable=False)
+    zip_code            = Column(String(10), nullable=False)
     lat                 = Column(Float)
     lng                 = Column(Float)
     created_at          = Column(DateTime, nullable=False)
@@ -32,7 +34,7 @@ class Location(Base):
 
         # Get Lat Long from Google
         (self.lat, self.lng) = \
-            geocoder(self.street_address, self.city, self.state, self.zip_code)
+            self.geocoder(self.street_address, self.city, self.state, self.zip_code)
 
     @staticmethod
     def geocoder(addr, city, state, zip):
@@ -41,10 +43,10 @@ class Location(Base):
         try:
             r = requests.get(url.format( \
                 ",".join(map(lambda x: x.replace(" ", "+"), data)), \
-                app_config.GOOGLE_API_KEY)).json()
-            return (r['results'][0]['geometry']['location']['lat'], results['results'][0]['geometry']['location']['lng'])
+                app_config.GOOGLE_API_KEY), verify=False).json()
+            return (r['results'][0]['geometry']['location']['lat'], r['results'][0]['geometry']['location']['lng'])
         except:
             return (None, None)
 
     def __repr__(self):
-        return '<{}, {}>'.format(self.__class__.__name__, self.name)
+        return '<{}, {}>'.format(self.__class__.__name__, self.street_address)
