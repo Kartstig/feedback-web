@@ -162,16 +162,7 @@ body {
 }
 
 /* ADD DONATOR =======================================*/
-.abouts {
-  text-align: left;
-  font-family: 'Josefin Slab', serif;
-  color: #76ff03;
-}
 
-#about {
-  font-size: 48px;
-  font-weight: bold;
-}
 
 .contacts {
   text-align: left;
@@ -180,6 +171,31 @@ body {
 }
 
 #contact {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+/* ABOUT =============================================*/
+
+#abouts {
+  margin: 0 auto 0 auto 0 auto 0 auto;
+}
+
+#about-info {
+  text-align: justify;
+  text-justify: inter-word;
+  width: 90%;
+  margin: 4rem auto 4rem auto;
+  padding-top: 67rem;
+}
+
+.abouts {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  color: #76ff03;
+}
+
+#about {
   font-size: 48px;
   font-weight: bold;
 }
