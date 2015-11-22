@@ -3,7 +3,6 @@
 
 from flask import Flask, current_app, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
 
 from feedback.config import app_config
 
