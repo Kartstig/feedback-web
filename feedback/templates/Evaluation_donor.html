@@ -1,10 +1,6 @@
-{% extends "base.html" }
+{% extends "base.html" %}
 
 {% block content %}
-<div class= "container background-container">
-</div>
-<div class= "container texture-container">
-</div>
 
 <div class="evalutaion">
   <div id="eval_header">
@@ -22,12 +18,12 @@
   </form>
 
   <span class="star-rating">
-  <input type="radio" name="rating" value="1"><i></i>
-  <input type="radio" name="rating" value="2"><i></i>
-  <input type="radio" name="rating" value="3"><i></i>
-  <input type="radio" name="rating" value="4"><i></i>
-  <input type="radio" name="rating" value="5"><i></i>
-</span>
+    <input type="radio" name="rating" value="1"><i></i>
+    <input type="radio" name="rating" value="2"><i></i>
+    <input type="radio" name="rating" value="3"><i></i>
+    <input type="radio" name="rating" value="4"><i></i>
+    <input type="radio" name="rating" value="5"><i></i>
+  </span>
 <strong class="choice">Choose a rating</strong>
 
   <form>
@@ -36,3 +32,4 @@
   <br><br>
   <input type="submit" value="Submit">
 </form>
+{% endblock %}

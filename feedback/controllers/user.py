@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, redirect, url_for, current_app, \
-    render_template, flash, Blueprint, Response, jsonify
+    render_template, flash, Blueprint, Response, jsonify, abort
 from flask.ext.login import login_user, current_user, logout_user
 from feedback.models.User import User
 from feedback.services.UserService import UserService
@@ -22,9 +22,11 @@ def user_create():
     errors = {}
     us = UserService()
     if request.method == 'POST':
+        print request.form
         try:
             u = us.create(**request.form)
-            return jsonify(u)
+            if u:
+                return jsonify(u.tojson())
         except:
             return abort(500)
     else:

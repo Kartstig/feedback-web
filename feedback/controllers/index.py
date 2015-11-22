@@ -112,9 +112,9 @@ def about():
 def contact():
     return render_template("contact.html", current_user=current_user)
 
-# def debug(resp):
-# 	resp.message("I hear you, {}, you said {}".format(
-# 		request.form.get('From', ''), request.form.get('Body', '')))
+@index.route('/evaluation')
+def rate():
+    return render_template("Evaluation_donor.html", current_user=current_user)
 
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():

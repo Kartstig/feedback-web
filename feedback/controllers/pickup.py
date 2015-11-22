@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, redirect, url_for, current_app, \
-    render_template, flash, Blueprint, Response, jsonify
+    render_template, flash, Blueprint, Response, jsonify, abort
 from flask.ext.login import login_user, current_user, logout_user
 from feedback.services.PickupService import PickupService
 
@@ -23,7 +23,8 @@ def pickup_create():
     if request.method == 'POST':
         try:
             p = ps.create(**request.form)
-            return jsonify(p)
+            if p:
+                return jsonify(p.tojson())
         except:
             return abort(500)
     else:
