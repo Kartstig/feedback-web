@@ -11,6 +11,10 @@ body {
   width: 100%;
 }
 
+#logo {
+  margin: 0 auto 0 auto;
+}
+
 .background-container {
   position: fixed;
   top: 5rem;
@@ -42,6 +46,7 @@ body {
   position: fixed;
   margin-top: 36vh;
   width: 100%;
+  text-align: center;
   z-index: 5;
 }
 
@@ -53,7 +58,7 @@ body {
 .main-titles {
   text-align: center;
   font-family: 'Josefin Slab', serif;
-  color: #76ff03;
+  color: rgba(102, 201, 68, 1);
 }
 
 #brand-info-section {
@@ -96,7 +101,7 @@ body {
 #second-section {
   width: 100%;
   margin-top: 8rem;
-  background-color: #76ff03;
+  background-color: rgba(102, 201, 68, 0.8);
   padding: 10rem 0 10rem 0;
 }
 
@@ -207,3 +212,20 @@ legend {
 fieldset {
 margin: 10rem 0rem 10rem;
 }
+
+.separator {
+  margin: 2rem;
+}
+
+#volunteer-form,
+#donator-form,
+#collector-form,
+#submit-form {
+  display: none;
+}
+
+#submit-form {
+  padding:  10px 15px 10px 15px;;
+}
+
+/* LOGIN =============================================*/
