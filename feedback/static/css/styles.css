@@ -106,11 +106,7 @@ body {
   color: #444;
 }
 
-.short-divider {
-  margin: 5rem auto 5rem auto;
-  border: 1.8px solid #76ff03;
-  width: 15rem;
-}
+`
 
 #third-section {
   width: 100%;
@@ -122,7 +118,6 @@ body {
   border-left: 2px solid #eee;
 }
 
-<<<<<<< Updated upstream
 .socio-icons {
   color: #bbb;
   margin: 3rem;
@@ -131,6 +126,12 @@ body {
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.short-divider {
+  margin: 5rem auto 5rem auto;
+  border: 1.8px solid #76ff03;
+  width: 15rem;
 }
 
 .inline {
@@ -155,8 +156,6 @@ body {
   text-justify: inter-word;
 }
 
-/* ADD DONATOR =======================================*/
-=======
 .abouts {
   text-align: left;
   font-family: 'Josefin Slab', serif;
@@ -167,4 +166,44 @@ body {
   font-size: 48px;
   font-weight: bold;
 }
->>>>>>> Stashed changes
+
+.contacts {
+  text-align: left;
+  font-family: 'Josefin Slab', serif;
+  color: #76ff03;
+}
+
+#contact {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+/* CONTACT =============================================*/
+
+#thank-you-message {
+  padding-top: 7rem;
+  text-align: left;
+}
+
+.short-divider-left {
+  margin: 5rem auto 5rem auto;
+  border: 1.8px solid #76ff03;
+  width: 15rem;
+  float: left;
+
+}
+
+#thanks-message {
+  text-align: justify;
+  text-justify: inter-word;
+  width: 90%;
+  margin: 5rem 0rem 5rem 3.5rem;
+}
+
+legend {
+  border-color: #76ff03;
+}
+
+fieldset {
+margin: 10rem 0rem 10rem;
+}
