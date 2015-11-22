@@ -4,11 +4,14 @@
 import re, os
 from Base import Base
 from bcrypt import hashpw, gensalt
-from sqlalchemy import Column, Integer, String, DateTime, Enum, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, Enum, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime
 from flask.ext.login import UserMixin
 
-__roles__ = ('user', 'admin')
+from feedback.models.Location import Location
+
+__roles__ = ('user', 'admin', 'recipient')
 
 class User(Base, UserMixin):
 
@@ -20,14 +23,19 @@ class User(Base, UserMixin):
     first_name          = Column(String(50))
     last_name           = Column(String(50))
     phone_number        = Column(String(15))
-    role                = Column(Enum(*__roles__), default='user', nullable=False)
+    role                = Column(String(60), default='user', nullable=False)
     created_at          = Column(DateTime, nullable=False)
     updated_at          = Column(DateTime, nullable=False)
     validation_token    = Column(String(64))
     last_login          = Column(DateTime)
+    location_id         = Column(Integer, ForeignKey('locations.id'))
+
+    location = relationship(Location,
+        foreign_keys="User.location_id",
+        backref="user")
 
     def __init__(self, username, password=None, first_name=None, last_name=None, 
-                 phone_number=None, role='user', last_login=None):
+                 phone_number=None, role='user', last_login=None, location_id=None):
         timestamp = datetime.now()
         self.username           = username
         self.password           = (self.pass_hash(password)) if password else None
@@ -39,6 +47,7 @@ class User(Base, UserMixin):
         self.updated_at         = timestamp
         self.validation_token   = os.urandom(32).encode('hex')
         self.last_login         = last_login
+        self.location_id        = location_id
 
     @staticmethod
     def pass_hash(password):
@@ -62,6 +71,9 @@ class User(Base, UserMixin):
             return self.phone_number
         segments = (self.phone_number[0:3], self.phone_number[3:6], self.phone_number[6:])
         return fmt.format(*segments)
+
+    def has_role(self, role):
+        return role in self.role.split(",")
 
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.username)

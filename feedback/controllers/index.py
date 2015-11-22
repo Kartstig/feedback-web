@@ -36,3 +36,10 @@ def respond():
 		return str(resp)
 	except Exception as e:
 		print e
+
+@index.route('/map', methods=['GET'])
+def map():
+    return render_template('map.html',
+        current_user=current_user,
+        api_key=app_config.GOOGLE_API_KEY,
+        active = request.form.get('active', ''))
