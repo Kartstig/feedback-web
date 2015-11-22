@@ -15,7 +15,7 @@ def restaurant_get(id):
 
 @restaurant.route('/api/restaurant/all', methods=['GET'])
 def restaurant_all():
-    return jsonify(dict(users=RestaurantService().serialize()))
+    return jsonify(dict(restaurants=RestaurantService().serialize()))
 
 @restaurant.route('/api/restaurant/create', methods=['POST'])
 def restaurant_create():

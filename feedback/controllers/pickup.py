@@ -15,7 +15,7 @@ def pickup_get(id):
 
 @pickup.route('/api/pickup/all', methods=['GET'])
 def pickup_all():
-    return jsonify(dict(users=PickupService().serialize()))
+    return jsonify(dict(pickups=PickupService().serialize()))
 
 @pickup.route('/api/pickup/create', methods=['POST'])
 def pickup_create():
