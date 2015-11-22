@@ -81,3 +81,7 @@ $(':radio').change(
     $('.choice').text( $(this).val() + ' stars' );
   }
 )
+
+// same hights
+var height = $('#how-we-doit').height();
+$('.cust-container').height(height);
