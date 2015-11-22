@@ -15,14 +15,12 @@ def create_app():
     from feedback.controllers.user import user
     from feedback.controllers.pickup import pickup
     from feedback.controllers.food import food
-    from feedback.controllers.food_entry import food_entry
     from feedback.controllers.location import location
     from feedback.controllers.restaurant import restaurant
     app.register_blueprint(index)
     app.register_blueprint(user)
     app.register_blueprint(pickup)
     app.register_blueprint(food)
-    app.register_blueprint(food_entry)
     app.register_blueprint(location)
     app.register_blueprint(restaurant)
 
