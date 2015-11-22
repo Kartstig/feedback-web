@@ -1,0 +1,38 @@
+{% extends "base.html" }
+
+{% block content %}
+<div class= "container background-container">
+</div>
+<div class= "container texture-container">
+</div>
+
+<div class="evalutaion">
+  <div id="eval_header">
+    <h3>Please Rate Our Services!</h3>
+  </div>
+  <div>
+    <p>Please take a moment to let us know how we did! Your feedback will help
+      us improve our services!</p>
+  </div>
+
+  <form>
+    Restaurant/Organization name:<br>
+    <input type="text" name="Donor_Name">
+    <br>
+  </form>
+
+  <span class="star-rating">
+  <input type="radio" name="rating" value="1"><i></i>
+  <input type="radio" name="rating" value="2"><i></i>
+  <input type="radio" name="rating" value="3"><i></i>
+  <input type="radio" name="rating" value="4"><i></i>
+  <input type="radio" name="rating" value="5"><i></i>
+</span>
+<strong class="choice">Choose a rating</strong>
+
+  <form>
+    Please provide any additional comments or information in the space below.<br>
+    <textarea id="eval_form" name="feedback" rows="6" columns="50"></textarea>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>

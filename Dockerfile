@@ -42,7 +42,8 @@ RUN chmod +x /appdata/run.sh
 # Python Environment
 RUN /pypy-2.6.1-linux64/bin/pip install virtualenv && \
   /pypy-2.6.1-linux64/bin/virtualenv --no-site-packages --distribute --python=/pypy-2.6.1-linux64/bin/pypy flask-pypy && \
-  /flask-pypy/bin/pip install -r /appdata/requirements.txt
+  /flask-pypy/bin/pip install --no-use-wheel zmq && \
+  /flask-pypy/bin/pip install --no-index --find-links=/appdata/wheels -r /appdata/requirements.txt
 
 # Set up Directories
 WORKDIR /appdata

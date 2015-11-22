@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Showing fields when drop down
 
 $('#user-role').on('click', function() {
@@ -79,3 +80,10 @@ $('#submit-form').on('click', function() {
 			alert('Error: Missing information');
 	});
 });
+=======
+$(':radio').change(
+  function(){
+    $('.choice').text( $(this).val() + ' stars' );
+  }
+)
+>>>>>>> d325eabb1f85c7bbe8dce3ca57f73cd15283fb87
