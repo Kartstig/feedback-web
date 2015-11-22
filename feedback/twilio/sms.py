@@ -14,13 +14,13 @@ class SMS(object):
 	def __init__(self):
 		self.client = self.client_factory()
 
-	def client_factory():
+	def client_factory(self):
 		return TwilioRestClient(self.account_sid, self.auth_token)
 
-	def send_msg(dest, msg):
+	def send_msg(self, dest, msg):
 		self.client.messages.create(to=dest, from_=self.account_phone, body=msg)
 
-	def receive_msg(request):
+	def receive_msg(self, request):
 		# TODO: find the sender and the msg
 		# resp = ET.fromstring(data)
 		# resp.findall('./Message/Body').pop().text

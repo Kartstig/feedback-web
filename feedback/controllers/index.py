@@ -14,13 +14,13 @@ index = Blueprint('index', __name__)
 def main():
     return render_template("index.html", current_user=current_user)
 
-@index.route('/respond_test', methods=['GET', 'POST'])
-def respond_test():
-	try:
-		print request.keys()
-		print request.values
-	except Exception e:
-		print e
+# @index.route('/respond_test', methods=['GET', 'POST'])
+# def respond_test():
+# 	try:
+# 		print request.keys()
+# 		print request.values
+# 	except Exception e:
+# 		print e
 
 @index.route('/respond', methods=['GET', 'POST'])
 def respond():
