@@ -44,7 +44,7 @@ FeedbackApp.Recipients.parse = function(data) {return data.locations};
       FeedbackApp.Recipients.fetch();
       FeedbackApp.updateMap();
       FeedbackApp.poll();
-  }, 2000);
+  }, 1000);
 })();
 
 (function() {
