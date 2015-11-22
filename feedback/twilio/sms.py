@@ -4,18 +4,17 @@
 from twilio.rest import TwilioRestClient
 import xml.etree.ElementTree as ET
 
+from feedback.config import app_config
 
 class SMS(object):
 
 	account_phone = '+15672986849'
-	account_sid = "AC0ff6bf2823297f5a1a037952031020f7"
-	auth_token = "a78e9dc2b6f9ff8aad6440e6d1393e02"
 
 	def __init__(self):
 		self.client = self.client_factory()
 
 	def client_factory(self):
-		return TwilioRestClient(self.account_sid, self.auth_token)
+		return TwilioRestClient(app_config.TWILIO_AUTH, app_config.TWILIO_AUTH)
 
 	def send_msg(self, dest, msg):
 		self.client.messages.create(to=dest, from_=self.account_phone, body=msg)
