@@ -1,12 +1,15 @@
 #!/usr/bin/ python
 # -*- coding: utf-8 -*-
 
+import traceback
+import sys
+
 from flask import request, redirect, url_for, current_app, \
     render_template, flash, Blueprint, Response, session
 from flask.ext.login import current_user
 
 from feedback.config import app_config
-# from feedback.twilio.sms import SMS
+from feedback.twilio.sms import SMS
 from twilio import twiml
 
 from random import choice, randint
@@ -41,7 +44,7 @@ deliveries = {}
 
 def normalize_foodlist(foodlist):
 	"""returns lower-case list of tokens from comma-sep string"""
-	return set(o.lower() for o in r.foodlist.split(', '))
+	return set(o.lower() for o in foodlist.split(', '))
 
 def find_match(donor, recipients):
 	"""finds first recipient matching the donor profile"""
@@ -89,13 +92,17 @@ def main():
 
 @index.route('/donate', methods=['GET', 'POST'])
 def donate():
-	if request.method == 'POST':
+	#if request.method == 'POST':
 		# d = Donor(request.form['name'], request.form['location'], request.form['offering'])
+	try:
 		d = donors[0]
 		target_recipient = find_match(d, recipients)
 		handle_donation(d, target_recipient)
-	else:
-		return render_template("donate.html", current_user=current_user)
+	except Exception as e:
+		print e, traceback.print_exc(file=sys.stdout)
+	return "Success"
+	#else:
+	#	return render_template("donate.html", current_user=current_user)
 
 @index.route('/about', methods=['GET'])
 def about():
@@ -148,7 +155,8 @@ def respond():
 				session['claimed'] = from_number
 				# ...and msg them to text back when they pickup the parcel
 				resp.message("Wonderful! When you pickup the parcel, text 'pickup' back to us, and we'll let them know you are coming!".format(body))
-		# debug(resp)
+		else:
+			resp.message("Visit our site to find out more!")# debug(resp)
 		return str(resp)
 	except Exception as e:
 		print e
